@@ -59,9 +59,72 @@ public class Main {
         System.out.println("Player reached position 100!");
         System.out.println("Total dice rolls: " + diceRollCount);
     }
+    private static void playTwoPlayers() {
+        int position1 = START_POSITION;
+        int position2 = START_POSITION;
+        int diceRollCount1 = 0;
+        int diceRollCount2 = 0;
+        int currentPlayer = 1;
 
+        while (position1 != WINNING_POSITION && position2 != WINNING_POSITION) {
+            if (currentPlayer == 1) {
+                System.out.println("Player 1's turn. Press Enter to roll the dice...");
+                new Scanner(System.in).nextLine();
 
-            public static void main(String[] args) {
+                int diceValue = rollDice();
+                diceRollCount1++;
+                System.out.println("Player 1 rolled: " + diceValue);
+
+                String option = checkOption();
+                System.out.println("Player 1 option result: " + option);
+
+                int newPosition = calculateNewPosition(position1, diceValue, option);
+                if (newPosition != -1) {
+                    position1 = newPosition;
+                    System.out.println("Player 1 moved to position: " + position1);
+                } else {
+                    System.out.println("Player 1 exceeded 100, staying at " + position1);
+                }
+
+                if (position1 == WINNING_POSITION) {
+                    System.out.println("Player 1 won the game!");
+                } else if (!option.equals("No Play")) {
+                    currentPlayer = 2;
+                }
+            } else {
+                System.out.println("Player 2's turn. Press Enter to roll the dice...");
+                new Scanner(System.in).nextLine();
+
+                int diceValue = rollDice();
+                diceRollCount2++;
+                System.out.println("Player 2 rolled: " + diceValue);
+
+                String option = checkOption();
+                System.out.println("Player 2 option result: " + option);
+
+                int newPosition = calculateNewPosition(position2, diceValue, option);
+                if (newPosition != -1) {
+                    position2 = newPosition;
+                    System.out.println("Player 2 moved to position: " + position2);
+                } else {
+                    System.out.println("Player 2 exceeded 100, staying at " + position2);
+                }
+                if (position2 == WINNING_POSITION) {
+                    System.out.println("Player 2 won the game!");
+                } else if (!option.equals("No Play")) {
+                    currentPlayer = 1;
+                }
+            }
+        }
+
+        System.out.println("Total dice rolls - Player 1: " + diceRollCount1 + ", Player 2: " + diceRollCount2);
+    }
+
+    private static int calculateNewPosition(int position2, int diceValue, String option) {
+        return 0;
+    }
+
+    public static void main(String[] args) {
         System.out.printf("Welcome to snake and ladder game..!");
 
 
