@@ -120,10 +120,30 @@ public class Main {
         System.out.println("Total dice rolls - Player 1: " + diceRollCount1 + ", Player 2: " + diceRollCount2);
     }
 
-    private static int calculateNewPosition(int position2, int diceValue, String option) {
-        return 0;
-    }
+    private static int calculateNewPosition(int currentPosition, int diceValue, String option) {
+        int newPosition = currentPosition;
 
+        switch (option) {
+            case "No Play":
+                newPosition = currentPosition;  // Stay in the same position
+                break;
+            case "Ladder":
+                newPosition = currentPosition + diceValue;  // Move forward
+                break;
+            case "Snake":
+                newPosition = currentPosition - diceValue;  // Move backward
+                break;
+        }
+
+        // Handle position constraints
+        if (newPosition < START_POSITION) {
+            return START_POSITION;  // Restart from 0 if below 0
+        } else if (newPosition > WINNING_POSITION) {
+            return -1;  // Indicate exceeding the winning position
+        } else {
+            return newPosition;  // Return the new valid position
+        }
+    }
     public static void main(String[] args) {
         System.out.printf("Welcome to snake and ladder game..!");
 
