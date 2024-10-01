@@ -146,7 +146,19 @@ public class Main {
     }
     public static void main(String[] args) {
         System.out.printf("Welcome to snake and ladder game..!");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose mode: 1 - Single Player, 2 - Two Players");
+        int mode = scanner.nextInt();
 
+        if (mode == 1) {
+            playSinglePlayer();
+        } else if (mode == 2) {
+            playTwoPlayers();
+        } else {
+            System.out.println("Invalid mode selected");
+        }
+
+        scanner.close();
 
     }
 }
