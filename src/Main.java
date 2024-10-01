@@ -9,8 +9,13 @@ public class Main {
     private static Random random=new Random();
 
     private static int rollDice() {
-        return random.nextInt(6) + 1;  // Roll the die (1 to 6)
+        return random.nextInt(6) + 1;
     }
+    private static String checkOption() {
+        String[] options = {"No Play", "Ladder", "Snake"};
+        return options[random.nextInt(options.length)];
+    }
+
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
